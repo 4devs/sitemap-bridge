@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="f_devs_sitemap.adapter.abstract_route.class">FDevs\Bridge\Sitemap\Adapter\AbstractRouting</parameter>
+        <parameter key="f_devs_sitemap.adapter.static_routing.class">FDevs\Bridge\Sitemap\Adapter\StaticRouting</parameter>
+        <parameter key="f_devs_sitemap.factory.sitemapindex.class">FDevs\Sitemap\Factory\SiteMapIndex</parameter>
+        <parameter key="f_devs_sitemap.factory.urlset.class">FDevs\Sitemap\Factory\UrlSet</parameter>
+        <parameter key="f_devs_sitemap.sitemap_manager.class">FDevs\Sitemap\SitemapManager</parameter>
+        <parameter key="f_devs_sitemap.command.generate.class">FDevs\Bridge\Sitemap\Command\GenerateCommand</parameter>
+        <parameter key="f_devs_sitemap.event_listener.add_href_lang.class">FDevs\Bridge\Sitemap\EventListener\AddHrefLangSubscriber</parameter>
+    </parameters>
+
+    <services>
+
+        <!--adapter-->
+        <service id="f_devs_sitemap.adapter.abstract_route" class="%f_devs_sitemap.adapter.abstract_route.class%"
+                 abstract="true" public="false">
+            <argument type="service" id="router"/>
+            <argument type="service" id="event_dispatcher" on-invalid="null"/>
+        </service>
+
+        <service id="f_devs_sitemap.adapter.static_route" class="%f_devs_sitemap.adapter.static_routing.class%"
+                 public="false" parent="f_devs_sitemap.adapter.abstract_route">
+            <argument type="service" id="router"/>
+            <tag name="f_devs_sitemap.adapter"/>
+        </service>
+
+        <!--factory-->
+        <service id="f_devs_sitemap.factory.sitemapindex" class="%f_devs_sitemap.factory.sitemapindex.class%">
+            <argument>%f_devs_sitemap.uri%</argument>
+            <argument>%f_devs_sitemap.dir%</argument>
+            <argument type="service" id="f_devs_sitemap.factory.urlset"/>
+            <tag name="f_devs_sitemap.factory"/>
+        </service>
+
+        <service id="f_devs_sitemap.factory.urlset" class="%f_devs_sitemap.factory.urlset.class%">
+            <tag name="f_devs_sitemap.factory"/>
+        </service>
+
+        <!--manager-->
+        <service id="f_devs_sitemap.sitemap_manager" class="%f_devs_sitemap.sitemap_manager.class%"/>
+
+        <!--console-->
+        <service id="f_devs_sitemap.command.generate" class="%f_devs_sitemap.command.generate.class%">
+            <argument type="service" id="f_devs_sitemap.sitemap_manager"/>
+            <argument>%f_devs_sitemap.filename%</argument>
+            <argument>%f_devs_sitemap.dir%</argument>
+            <argument>%f_devs_sitemap.params%</argument>
+            <argument type="string">fdevs:sitemap:generate</argument>
+            <argument type="service" id="security.token_storage" on-invalid="ignore"/>
+            <argument type="service" id="router" on-invalid="ignore"/>
+            <argument>%f_devs_sitemap.uri%</argument>
+            <tag name="console.command"/>
+        </service>
+
+        <!--event listener-->
+        <service id="f_devs_sitemap.event_listener.add_href_lang" class="%f_devs_sitemap.event_listener.add_href_lang.class%">
+            <argument>%f_devs_sitemap.params%</argument>
+            <argument type="service" id="router"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+
+    </services>
+
+</container>
