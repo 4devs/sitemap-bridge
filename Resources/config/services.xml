@@ -12,6 +12,7 @@
         <parameter key="f_devs_sitemap.sitemap_manager.class">FDevs\Sitemap\SitemapManager</parameter>
         <parameter key="f_devs_sitemap.command.generate.class">FDevs\Bridge\Sitemap\Command\GenerateCommand</parameter>
         <parameter key="f_devs_sitemap.event_listener.add_href_lang.class">FDevs\Bridge\Sitemap\EventListener\AddHrefLangSubscriber</parameter>
+        <parameter key="f_devs_sitemap.controller.sitemap.class">FDevs\Bridge\Sitemap\Controller\SitemapController</parameter>
     </parameters>
 
     <services>
@@ -64,6 +65,11 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <!--controller-->
+        <service id="f_devs_sitemap.controller.sitemap" class="%f_devs_sitemap.controller.sitemap.class%">
+            <argument type="service" id="f_devs_sitemap.sitemap_manager"/>
+            <argument>%f_devs_sitemap.params%</argument>
+        </service>
 
     </services>
 

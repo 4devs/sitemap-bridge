@@ -5,6 +5,6 @@
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="f_devs_sitemap_homepage" path="/sitemap.xml">
-        <default key="_controller">FDevsSitemapBundle:Default:index</default>
+        <default key="_controller">f_devs_sitemap.controller.sitemap:indexAction</default>
     </route>
 </routes>
