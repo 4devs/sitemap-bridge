@@ -31,6 +31,7 @@ class SitemapController
 
     /**
      * @return Response
+     *
      * @throws \FDevs\Sitemap\Exception\FactoryNotFoundException
      */
     public function indexAction()
