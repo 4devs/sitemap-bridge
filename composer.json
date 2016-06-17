@@ -1,0 +1,44 @@
+{
+    "name": "fdevs/sitemap-bridge",
+    "type": "symfony-bridge",
+    "description": "Symfony sitemap generate Bridge",
+    "keywords": [
+        "seo",
+        "sitemap"
+    ],
+    "homepage": "https://github.com/4devs/sitemap-bridge",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Samusev",
+            "email": "andrey_simfi@list.ru",
+            "homepage": "http://andrey.4devs.io"
+        },
+        {
+            "name": "4devs Community",
+            "homepage": "https://github.com/4devs/sitemap-bridge/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "fdevs/sitemap": "~0.1"
+    },
+    "require-dev": {
+        "symfony/console": "~2.8|~3.0",
+        "symfony/dependency-injection": "~2.8|~3.0",
+        "symfony/routing": "~2.8|~3.0",
+        "symfony/event-dispatcher": "~2.8|~3.0"
+    },
+    "suggest": {
+        "symfony/console": "use with symfony component console",
+        "symfony/dependency-injection": "use with symfony component dependency injection",
+        "symfony/routing": "use with symfony component routing",
+        "symfony/event-dispatcher": "use with symfony component event dispatcher",
+        "fdevs/sitemap-bundle": "use with symfony bundle"
+    },
+    "autoload": {
+        "psr-4": {
+            "FDevs\\Bridge\\Sitemap\\": ""
+        }
+    }
+}
