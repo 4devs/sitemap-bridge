@@ -32,6 +32,7 @@ class FDevsSitemapExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $loader->load('services.xml');
+        $loader->load('console.xml');
         foreach ($config['adapter'] as $item) {
             $container->setParameter($this->getAlias().'.adapter.'.$item['type'].'.class', $item['class']);
             $container->setParameter($this->getAlias().'.adapter.'.$item['type'].'.manager_name', $item['manager']);
