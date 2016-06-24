@@ -24,7 +24,9 @@
         "fdevs/sitemap": "~0.1"
     },
     "require-dev": {
+        "doctrine/mongodb-odm": "~1.1",
         "symfony/console": "~2.8|~3.0",
+        "symfony/security": "~2.8|~3.0",
         "symfony/dependency-injection": "~2.8|~3.0",
         "symfony/routing": "~2.8|~3.0",
         "symfony/event-dispatcher": "~2.8|~3.0"

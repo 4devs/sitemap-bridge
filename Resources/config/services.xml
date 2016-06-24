@@ -45,19 +45,6 @@
         <!--manager-->
         <service id="f_devs_sitemap.sitemap_manager" class="%f_devs_sitemap.sitemap_manager.class%"/>
 
-        <!--console-->
-        <service id="f_devs_sitemap.command.generate" class="%f_devs_sitemap.command.generate.class%">
-            <argument type="service" id="f_devs_sitemap.sitemap_manager"/>
-            <argument>%f_devs_sitemap.filename%</argument>
-            <argument>%f_devs_sitemap.dir%</argument>
-            <argument>%f_devs_sitemap.params%</argument>
-            <argument type="string">fdevs:sitemap:generate</argument>
-            <argument type="service" id="security.token_storage" on-invalid="ignore"/>
-            <argument type="service" id="router" on-invalid="ignore"/>
-            <argument>%f_devs_sitemap.uri%</argument>
-            <tag name="console.command"/>
-        </service>
-
         <!--event listener-->
         <service id="f_devs_sitemap.event_listener.add_href_lang" class="%f_devs_sitemap.event_listener.add_href_lang.class%">
             <argument>%f_devs_sitemap.params%</argument>
