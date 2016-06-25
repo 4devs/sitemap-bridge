@@ -21,6 +21,8 @@ composer require fdevs/sitemap-bridge
 Documentation
 -------------
 
+- [Use with Symfony Console](https://github.com/4devs/sitemap-bridge/blob/master/Resources/doc/console.md)
+
 
 License
 -------

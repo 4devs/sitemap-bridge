@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="f_devs_sitemap.command.generate.class">FDevs\Bridge\Sitemap\Command\GenerateCommand</parameter>
+        <parameter key="f_devs_sitemap.event_listener.set_anonymous_token.class">FDevs\Bridge\Sitemap\EventListener\SetAnonymousTokenSubscriber</parameter>
+        <parameter key="f_devs_sitemap.event_listener.set_request_context_aware.class">FDevs\Bridge\Sitemap\EventListener\SetRequestContextAwareSubscriber</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="f_devs_sitemap.command.generate" class="%f_devs_sitemap.command.generate.class%">
+            <argument type="service" id="f_devs_sitemap.sitemap_manager"/>
+            <argument>%f_devs_sitemap.filename%</argument>
+            <argument>%f_devs_sitemap.dir%</argument>
+            <argument>%f_devs_sitemap.params%</argument>
+            <argument type="string">fdevs:sitemap:generate</argument>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="f_devs_sitemap.event_listener.set_anonymous_token"
+                 class="%f_devs_sitemap.event_listener.set_anonymous_token.class%">
+            <argument type="service" id="security.token_storage" on-invalid="ignore"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="f_devs_sitemap.event_listener.set_request_context_aware"
+                 class="%f_devs_sitemap.event_listener.set_request_context_aware.class%">
+            <argument type="service" id="router" on-invalid="ignore"/>
+            <argument>%f_devs_sitemap.uri%</argument>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+    </services>
+
+</container>
