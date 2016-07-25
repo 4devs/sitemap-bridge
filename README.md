@@ -22,6 +22,7 @@ Documentation
 -------------
 
 - [Use with Symfony Console](https://github.com/4devs/sitemap-bridge/blob/master/Resources/doc/console.md)
+- [Use with Symfony DependencyInjection](https://github.com/4devs/sitemap-bridge/blob/master/Resources/doc/dependency-injection.md)
 
 
 License
